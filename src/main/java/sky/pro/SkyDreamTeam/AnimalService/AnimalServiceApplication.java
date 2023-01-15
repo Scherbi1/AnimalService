@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 public class AnimalServiceApplication {
 
 	public static void main(String[] args) {
+		System.out.println("REER");
 		SpringApplication.run(AnimalServiceApplication.class, args);
 	}
 
