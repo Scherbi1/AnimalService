@@ -1,4 +1,4 @@
-package sky.pro.SkyDreamTeam.AnimalService.Model;
+package sky.pro.SkyDreamTeam.AnimalService.model;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
