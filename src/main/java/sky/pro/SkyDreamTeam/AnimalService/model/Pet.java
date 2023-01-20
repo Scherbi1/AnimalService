@@ -1,4 +1,4 @@
-package sky.pro.SkyDreamTeam.AnimalService.Model;
+package sky.pro.SkyDreamTeam.AnimalService.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
