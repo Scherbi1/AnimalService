@@ -31,7 +31,7 @@ public class BotUpdatesListener implements UpdatesListener {
     @Override
     public int process(List<Update> updates) {
         updates.forEach(update -> {
-            long chatId = (update.message().chat().id());
+           long chatId = (update.message().chat().id());
             logger.info("Processing update: {}", update);
             String updateMassage = update.message().text();
             if (updateMassage != null) {
