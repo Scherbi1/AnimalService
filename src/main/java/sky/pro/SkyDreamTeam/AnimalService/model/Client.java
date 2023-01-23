@@ -15,4 +15,6 @@ public class Client {
     private String address;
     //private Enum lastMenu;Если пользователь уже обращался к боту ранее, то новое обращение начинается с выбора запроса, с которым пришел пользователь.
     private boolean isVolunteer;
+
+
 }
