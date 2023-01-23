@@ -12,7 +12,9 @@ public class Report {
     private Long id;
     private Long chatId;
     private LocalDateTime date;
-    private String text;
+    private String diet;
+    private String health;
+    private String habits;
     //переменные для загрузки фото:
     private String filePath;
     private long fileSize;
