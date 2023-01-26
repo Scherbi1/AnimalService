@@ -13,6 +13,7 @@ public class InitData {
 
     private HashMap<String, String> informationMap = new HashMap<String, String>();
     Logger logger = LoggerFactory.getLogger(InitData.class);
+
     public void runAfterObjectCreated() throws IOException {
         logger.info("Загрузка информационных текстов из фйлов каталога information.data");
 
@@ -30,7 +31,7 @@ public class InitData {
         logger.info(informationMap.toString());
     }
 
-    private static String readUsingFiles(String fileName) throws IOException {
+    public static String readUsingFiles(String fileName) throws IOException {
         return new String(Files.readAllBytes(Paths.get(fileName)));
     }
 
@@ -41,6 +42,18 @@ public class InitData {
 
         String extPattern = "(?<!^)[.]" + ".*";
         return filename.replaceAll(extPattern, "");
+    }
+
+    public static String getExtension(String filename) {
+        if (filename == null || filename.isEmpty()) {
+            return filename;
+        }
+
+        int i = filename.lastIndexOf('.');
+        if (i > 0) {
+            return filename.substring(i + 1);
+        }
+        return filename;
     }
 }
 
