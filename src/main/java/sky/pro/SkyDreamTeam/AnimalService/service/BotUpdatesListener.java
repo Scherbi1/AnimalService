@@ -1,4 +1,5 @@
 package sky.pro.SkyDreamTeam.AnimalService.service;
+
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.File;
@@ -13,8 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import sky.pro.SkyDreamTeam.AnimalService.initialization.InformationLoader;
 import sky.pro.SkyDreamTeam.AnimalService.initialization.InitData;
 import sky.pro.SkyDreamTeam.AnimalService.model.BotMenu;
+import sky.pro.SkyDreamTeam.AnimalService.repository.InformationRepository;
 
 import javax.annotation.PostConstruct;
 
@@ -35,7 +38,18 @@ public class BotUpdatesListener implements UpdatesListener {
 
     private Logger logger = LoggerFactory.getLogger(BotUpdatesListener.class);
 
-    private BotMenu botMenu = REPORT;
+
+
+    private InformationRepository informationRepository;
+    private InformationLoader informationLoader;
+
+    public BotUpdatesListener(InformationRepository informationRepository,
+                              InformationLoader informationLoader) {
+        this.informationRepository = informationRepository;
+        this.informationLoader = informationLoader;
+    }
+
+    private BotMenu botMenu = START;
     @Autowired
     private TelegramBot telegramBot;
 
@@ -44,6 +58,11 @@ public class BotUpdatesListener implements UpdatesListener {
     @PostConstruct
     public void init() {
         telegramBot.setUpdatesListener(this);
+    }
+
+    @PostConstruct
+    public void loadInfo() throws IOException {
+        informationLoader.loadInfo();
     }
 
     @Override
@@ -68,7 +87,7 @@ public class BotUpdatesListener implements UpdatesListener {
                     }
                     break;
                 default:
-                    sendReportMassage(chatId);
+                    sendStartMassage(chatId);
                     break;
             }
 
@@ -137,8 +156,7 @@ public class BotUpdatesListener implements UpdatesListener {
     }
 
     private void sendContactMassage(long chatId) {
-        String massage = "Контактная информация возьмется из БД " +
-                "в которую Инфа загрузиться из файла";
+        String massage = informationRepository.findLastByQuestion("contact").getAnswer();
         SendMessage message = new SendMessage(chatId, massage);
         telegramBot.execute(message);
         botMenu = INFO;
