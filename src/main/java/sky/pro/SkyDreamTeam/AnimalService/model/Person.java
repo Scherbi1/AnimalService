@@ -1,8 +1,8 @@
 package sky.pro.SkyDreamTeam.AnimalService.model;
 
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class Person {
     private String name;
     private String phone;
     private String address;
-    private DogShelterMenu botMenu;
+    private BotMenu botMenu;
     private Boolean isAdmin;
 
 
@@ -23,7 +23,7 @@ public class Person {
     }
 
 
-    public Person(Long chatId, String name, String phone, String address, DogShelterMenu botMenu, Boolean isAdmin) {
+    public Person(Long chatId, String name, String phone, String address, BotMenu botMenu, Boolean isAdmin) {
         this.chatId = chatId;
         this.name = name;
         this.phone = phone;
@@ -45,11 +45,11 @@ public class Person {
         return Objects.hash(getChatId());
     }
 
-    public DogShelterMenu getBotMenu() {
+    public BotMenu getBotMenu() {
         return botMenu;
     }
 
-    public void setBotMenu(DogShelterMenu botMenu) {
+    public void setBotMenu(BotMenu botMenu) {
         this.botMenu = botMenu;
     }
 
