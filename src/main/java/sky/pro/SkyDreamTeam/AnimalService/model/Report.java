@@ -1,10 +1,8 @@
 package sky.pro.SkyDreamTeam.AnimalService.model;
 
 import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class Report {
     @Id
@@ -12,12 +10,60 @@ public class Report {
     private Long id;
     private Long chatId;
     private LocalDateTime date;
-    private String diet;
-    private String health;
-    private String habits;
-    //переменные для загрузки фото:
-    private String filePath;
-    private long fileSize;
-    private String mediaType;
-    private byte[] data;
+    private String message;
+
+    public Report(Long id, Long chatId, LocalDateTime date, String message, Image image) {
+        this.id = id;
+        this.chatId = chatId;
+        this.date = date;
+        this.message = message;
+        this.image = image;
+    }
+
+    public Report() {
+
+    }
+
+    @OneToOne
+    @JoinColumn(name = "discription")
+    private Image image;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 }
