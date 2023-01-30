@@ -1,12 +1,13 @@
 package sky.pro.SkyDreamTeam.AnimalService.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import sky.pro.SkyDreamTeam.AnimalService.model.Information;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface InformationRepository extends JpaRepository<Information, Long> {
+public interface InformationRepository extends JpaRepository<Information, String> {
      Information findLastByQuestion(String question);
+
+    @Query(value = "SELECT answer FROM information where question=:key", nativeQuery = true)
+    String getMessageByKey(String key);
 
 }
