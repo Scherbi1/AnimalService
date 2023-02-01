@@ -2,9 +2,10 @@ package sky.pro.SkyDreamTeam.AnimalService.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import sky.pro.SkyDreamTeam.AnimalService.model.BotMenu;
 import sky.pro.SkyDreamTeam.AnimalService.model.Person;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.repository.PersonRepository;
 
 @Service
@@ -37,16 +38,21 @@ public class PersonService {
         return personRepository.findByChatId(id);
     }
 
-    public DogShelterMenu getBotMenuByChatId(long chatId) {
+    public void deletePerson(long id) {
+        logger.info("Was invoked method for deletePerson");
+        personRepository.deleteById(id);
+    }
+
+    public BotMenu getBotMenuByChatId(long chatId) {
         logger.info("Was invoked method for getBotMenuByChatId");
         return personRepository.getBotMenuByChatId(chatId);
     }
 
 
-   public DogShelterMenu setBotMenuByChatId(long chatId, DogShelterMenu botMenu) {
-       logger.info("Was invoked method for setBotMenuForChatId");
+    public BotMenu setBotMenuByChatId(long chatId,BotMenu botMenu) {
+        logger.info("Was invoked method for setBotMenuForChatId");
         Person person=findPersonByChatId(chatId);
-        person.setBotMenu(botMenu);
+      //  person.setBotMenu(botMenu); //Херня какая тут
         editPerson(person);
         logger.debug("setBotMenuByChatId id {} is edited", botMenu);
         return botMenu;
