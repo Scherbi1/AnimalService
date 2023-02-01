@@ -28,7 +28,20 @@ public class PersonController {
         return personService.creatPerson(person);
     }
 
+    @DeleteMapping
+    public ResponseEntity<Person> deletePerson(@RequestParam long id) {
+        logger.debug("Person id {} is delete");
+        personService.deletePerson(id);
+        return ResponseEntity.ok().build();
+    }
 
+    @GetMapping
+    public ResponseEntity<Person> findPerson(@RequestParam long id) {
+        logger.debug("Person id {} is find");
+        Person foundPerson = personService.findPersonByChatId(id);
+        return ResponseEntity.ok(foundPerson);
+
+    }
     @PutMapping
     public ResponseEntity<Person> editPerson(@RequestBody Person person) {
         Person foundPerson = personService.editPerson(person);

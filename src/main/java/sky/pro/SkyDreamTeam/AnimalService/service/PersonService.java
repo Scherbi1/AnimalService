@@ -38,16 +38,21 @@ public class PersonService {
         return personRepository.findByChatId(id);
     }
 
+    public void deletePerson(long id) {
+        logger.info("Was invoked method for deletePerson");
+        personRepository.deleteById(id);
+    }
+
     public BotMenu getBotMenuByChatId(long chatId) {
         logger.info("Was invoked method for getBotMenuByChatId");
         return personRepository.getBotMenuByChatId(chatId);
     }
 
 
-   public BotMenu setBotMenuByChatId(long chatId,BotMenu botMenu) {
-       logger.info("Was invoked method for setBotMenuForChatId");
+    public BotMenu setBotMenuByChatId(long chatId,BotMenu botMenu) {
+        logger.info("Was invoked method for setBotMenuForChatId");
         Person person=findPersonByChatId(chatId);
-        person.setBotMenu(botMenu);
+      //  person.setBotMenu(botMenu); //Херня какая тут
         editPerson(person);
         logger.debug("setBotMenuByChatId id {} is edited", botMenu);
         return botMenu;
