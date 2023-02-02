@@ -2,10 +2,9 @@ package sky.pro.SkyDreamTeam.AnimalService.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import sky.pro.SkyDreamTeam.AnimalService.model.BotMenu;
 import sky.pro.SkyDreamTeam.AnimalService.model.Person;
+import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.repository.PersonRepository;
 
 @Service
@@ -38,13 +37,13 @@ public class PersonService {
         return personRepository.findByChatId(id);
     }
 
-    public BotMenu getBotMenuByChatId(long chatId) {
+    public DogShelterMenu getBotMenuByChatId(long chatId) {
         logger.info("Was invoked method for getBotMenuByChatId");
         return personRepository.getBotMenuByChatId(chatId);
     }
 
 
-   public BotMenu setBotMenuByChatId(long chatId,BotMenu botMenu) {
+   public DogShelterMenu setBotMenuByChatId(long chatId, DogShelterMenu botMenu) {
        logger.info("Was invoked method for setBotMenuForChatId");
         Person person=findPersonByChatId(chatId);
         person.setBotMenu(botMenu);

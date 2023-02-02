@@ -1,41 +1,38 @@
 package sky.pro.SkyDreamTeam.AnimalService.model;
 
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class Person {
+public class CatShelterPerson {
     @Id
     private Long chatId;
     private String name;
     private String phone;
     private String address;
-    private DogShelterMenu botMenu;
-    private Boolean isAdmin;
+    private CatShelterMenu botMenu;
 
 
-
-    public Person() {
+    public CatShelterPerson() {
 
     }
 
 
-    public Person(Long chatId, String name, String phone, String address, DogShelterMenu botMenu, Boolean isAdmin) {
+    public CatShelterPerson(Long chatId, String name, String phone, String address, CatShelterMenu botMenu) {
         this.chatId = chatId;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.botMenu = botMenu;
-        this.isAdmin = isAdmin;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person person)) return false;
+        if (!(o instanceof CatShelterPerson person)) return false;
         return getChatId().equals(person.getChatId());
     }
 
@@ -45,11 +42,11 @@ public class Person {
         return Objects.hash(getChatId());
     }
 
-    public DogShelterMenu getBotMenu() {
+    public CatShelterMenu getBotMenu() {
         return botMenu;
     }
 
-    public void setBotMenu(DogShelterMenu botMenu) {
+    public void setBotMenu(CatShelterMenu botMenu) {
         this.botMenu = botMenu;
     }
 
@@ -84,16 +81,6 @@ public class Person {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
-
-
 
 
 }

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sky.pro.SkyDreamTeam.AnimalService.model.BotMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.model.Person;
 import sky.pro.SkyDreamTeam.AnimalService.service.PersonService;
 
@@ -40,7 +40,7 @@ public class PersonController {
     }
 
     @GetMapping(path = "getBotMenu/ByChatId/{chatId}")
-    public ResponseEntity<BotMenu> getBotMenuByChatId(@PathVariable long chatId) {
+    public ResponseEntity<DogShelterMenu> getBotMenuByChatId(@PathVariable long chatId) {
         return ResponseEntity.ok(personService.getBotMenuByChatId(chatId));
     }
 
