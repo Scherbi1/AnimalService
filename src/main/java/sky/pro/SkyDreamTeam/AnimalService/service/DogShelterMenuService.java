@@ -155,7 +155,7 @@ public class DogShelterMenuService {
     }
 
     private void sendContactMassage(long chatId) {
-        String massage = informationRepository.findLastByQuestion("contact").getAnswer();
+        String massage = informationRepository.findLastByQuestion("contact").getInformation();
         telegramBot.execute(new SendMessage(chatId, massage));
 
         try {
@@ -170,7 +170,7 @@ public class DogShelterMenuService {
     }
 
     private void sendShelterInfoMassage(long chatId) {
-        String massage = informationRepository.findLastByQuestion("shelterinfo").getAnswer();
+        String massage = informationRepository.findLastByQuestion("shelterinfo").getInformation();
         SendMessage message = new SendMessage(chatId, massage);
         telegramBot.execute(message);
         logger.info("sendShelterInfoMassage to chatId: {}", chatId);

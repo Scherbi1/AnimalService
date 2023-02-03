@@ -16,16 +16,32 @@ public class InformationService {
 
     Logger logger = LoggerFactory.getLogger(ImageService.class);
 
-    public Information creatInformation(Information information) {
+   /* public Information creatInformation(Information information) {
         logger.info("Was invoked method for creatInformation");
         return informationRepository.save(information);
-    }
+    }*/
+
 
     public Information creatInformation(String key, String content) {
         Information information = new Information(key, content);
         return informationRepository.save(information);
     }
 
+    public void deleteInformation(String key) {
+        logger.info("Was invoked method for deleteInformation");
+        informationRepository.deleteInformationByKey(key);
+    }
+
+    public Information editInformation(Information information) {
+        logger.info("Was invoked method for editInformation");
+        return informationRepository.save(information);
+    }
+
+    public Information findInformationByKey(String key) {
+        logger.info("Was invoked method for findInformationByKey");
+        return informationRepository.findInformationByKey(key);
+
+    }
     public String getMessageByKey(String key) {
         return informationRepository.getMessageByKey(key);
     }

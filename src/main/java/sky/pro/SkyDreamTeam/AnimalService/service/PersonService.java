@@ -36,11 +36,15 @@ public class PersonService {
         logger.info("Was invoked method for findPerson");
         return personRepository.findByChatId(id);
     }
-
+    public void deletePerson(long id) {
+        logger.info("Was invoked method for deletePerson");
+        personRepository.deleteById(id);
+    }
     public DogShelterMenu getBotMenuByChatId(long chatId) {
         logger.info("Was invoked method for getBotMenuByChatId");
         return personRepository.getBotMenuByChatId(chatId);
     }
+
 
 
    public DogShelterMenu setBotMenuByChatId(long chatId, DogShelterMenu botMenu) {

@@ -1,29 +1,26 @@
 package sky.pro.SkyDreamTeam.AnimalService.model;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
 public class Information {
     @Id
-    private String question;
-    private String answer;
+    private String key;
+    private String information;
 
-    public Information(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
+    public Information(String key, String information) {
+        this.key = key;
+        this.information = information;
     }
 
     public Information() {
     }
 
-    public String getQuestion() {
-        return question;
+    public String getKey() {
+        return key;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getInformation() {
+        return information;
     }
 }
