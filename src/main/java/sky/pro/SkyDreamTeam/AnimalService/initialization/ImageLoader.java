@@ -16,7 +16,7 @@ import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtens
 public class ImageLoader {
     private final ImageRepository imageRepository;
     private final ImageService imageService;
-    Logger logger = LoggerFactory.getLogger(InformationLoader.class);
+    Logger logger  = LoggerFactory.getLogger(InformationLoader.class);
 
     public ImageLoader(ImageRepository imageRepository, ImageService imageService) {
         this.imageRepository = imageRepository;
