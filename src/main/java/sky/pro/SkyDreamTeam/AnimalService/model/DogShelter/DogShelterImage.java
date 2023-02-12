@@ -1,26 +1,21 @@
-package sky.pro.SkyDreamTeam.AnimalService.model;
+package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
 
-import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
-import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterReport;
+import sky.pro.SkyDreamTeam.AnimalService.model.Report;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
-public class  Image {
+public class DogShelterImage {
     @Id
-    private String discription;
+    private String description;
     private long fileSize;
     private String mediaType;
     @Lob
     private byte[] data;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private DogShelterReport report;
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private DogShelterPet pet;
 
 
@@ -32,12 +27,12 @@ public class  Image {
         this.report = report;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String dscription) {
-        this.discription = dscription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
