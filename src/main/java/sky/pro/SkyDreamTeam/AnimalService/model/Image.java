@@ -1,5 +1,7 @@
 package sky.pro.SkyDreamTeam.AnimalService.model;
 
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterReport;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterReport;
 
@@ -19,9 +21,14 @@ public class  Image {
 
     @OneToOne
     private DogShelterReport report;
+ /*   @OneToOne
+    private CatShelterReport reportCat;*/
 
     @OneToOne
     private DogShelterPet pet;
+
+   /* @OneToOne
+    private CatShelterPet petCat;*/
 
 
     public DogShelterReport getReport() {

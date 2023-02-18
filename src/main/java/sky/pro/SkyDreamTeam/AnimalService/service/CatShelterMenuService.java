@@ -8,15 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sky.pro.SkyDreamTeam.AnimalService.model.CatShelterPerson;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPersonService;
 
 import java.util.List;
 
 import static sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu.NONE_C;
 import static sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu.START_C;
-import static sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu.START;
 
 
 @Service

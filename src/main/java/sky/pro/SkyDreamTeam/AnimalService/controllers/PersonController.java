@@ -28,12 +28,12 @@ public class PersonController {
         return personService.creatPerson(person);
     }
 
-    @DeleteMapping
+    /*@DeleteMapping
     public ResponseEntity<Person> deletePerson(@RequestParam long id) {
         logger.debug("Person id {} is delete");
         personService.deletePerson(id);
         return ResponseEntity.ok().build();
-    }
+    }*/
 
     @GetMapping
     public ResponseEntity<Person> findPerson(@RequestParam long id) {

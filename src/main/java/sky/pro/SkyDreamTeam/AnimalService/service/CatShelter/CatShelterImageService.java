@@ -1,37 +1,36 @@
-package sky.pro.SkyDreamTeam.AnimalService.service.DogShelter;
+package sky.pro.SkyDreamTeam.AnimalService.service.CatShelter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import sky.pro.SkyDreamTeam.AnimalService.exceptions.ImageNotFoundException;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterImage;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterImage;
-import sky.pro.SkyDreamTeam.AnimalService.model.Image;
-import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterImageRepository;
-import sky.pro.SkyDreamTeam.AnimalService.repository.ImageRepository;
+import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterImageRepository;
 import sky.pro.SkyDreamTeam.AnimalService.utils.JavaFileToMultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static io.swagger.v3.core.util.AnnotationsUtils.getExtensions;
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtension;
 
-
-
 @Service
 @Transactional
-public class DogShelterImageService {
+public class CatShelterImageService {
     @Value("${path.to.imageData.folder}")
     private String imageDir;
 
-    private final DogShelterImageRepository imageRepository;
-    Logger logger = LoggerFactory.getLogger(DogShelterImageService.class);
+    private final CatShelterImageRepository imageRepository;
 
-    public DogShelterImageService(DogShelterImageRepository imageRepository) {
+    Logger logger = LoggerFactory.getLogger(CatShelterImageService.class);
+
+    private CatShelterImageService(CatShelterImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
     public void uploadImage(String description, MultipartFile imageFile) throws IOException {
@@ -49,7 +48,7 @@ public class DogShelterImageService {
 
             bis.transferTo(bos);
         }
-        DogShelterImage image = new DogShelterImage();
+        CatShelterImage image = new CatShelterImage();
         image.setDescription(description);
         image.setFileSize(imageFile.getSize());
         image.setMediaType(imageFile.getContentType());
@@ -81,7 +80,7 @@ public class DogShelterImageService {
             return true;
         }
     }
-    public DogShelterImage findImageByDescription(String description) {
+    public CatShelterImage findImageByDescription(String description) {
         logger.info("Was invoked method for findImage");
         return imageRepository.findByDescription(description).orElseThrow(ImageNotFoundException::new);
     }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sky.pro.SkyDreamTeam.AnimalService.initialization.InformationLoader;
 import sky.pro.SkyDreamTeam.AnimalService.initialization.ImageLoader;
+import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPersonService;
 
 import javax.annotation.PostConstruct;
 

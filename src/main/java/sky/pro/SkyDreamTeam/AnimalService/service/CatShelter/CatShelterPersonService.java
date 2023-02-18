@@ -1,11 +1,12 @@
-package sky.pro.SkyDreamTeam.AnimalService.service;
+package sky.pro.SkyDreamTeam.AnimalService.service.CatShelter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import sky.pro.SkyDreamTeam.AnimalService.model.CatShelterPerson;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu;
-import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelterPersonRepository;
+import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterPersonRepository;
+import sky.pro.SkyDreamTeam.AnimalService.service.TelegramBotService;
 
 
 @Service

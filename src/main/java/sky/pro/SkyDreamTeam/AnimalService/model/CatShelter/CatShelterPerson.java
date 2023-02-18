@@ -1,4 +1,4 @@
-package sky.pro.SkyDreamTeam.AnimalService.model;
+package sky.pro.SkyDreamTeam.AnimalService.model.CatShelter;
 
 import sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu;
 
