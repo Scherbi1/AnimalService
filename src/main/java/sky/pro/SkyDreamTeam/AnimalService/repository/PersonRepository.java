@@ -1,15 +1,16 @@
-package sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter;
+package sky.pro.SkyDreamTeam.AnimalService.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPerson;
+
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.Person;
 
-public interface DogShelterPersonRepository extends JpaRepository<DogShelterPerson, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    DogShelterPerson findById(long id);
+    Person findById(long id);
 
-    DogShelterPerson findByChatId(long id);
+    Person findByChatId(long id);
 
     @Query(value = "SELECT bot_menu FROM person where chat_id=:ChatId", nativeQuery = true)
     DogShelterMenu getBotMenuByChatId(long ChatId);

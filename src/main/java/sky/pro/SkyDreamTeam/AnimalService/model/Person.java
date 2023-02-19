@@ -1,11 +1,13 @@
-package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
+package sky.pro.SkyDreamTeam.AnimalService.model;
+
+import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class DogShelterPerson {
+public class Person {
     @Id
     private Long chatId;
     private String name;
@@ -16,12 +18,12 @@ public class DogShelterPerson {
 
 
 
-    public DogShelterPerson() {
+    public Person() {
 
     }
 
 
-    public DogShelterPerson(Long chatId, String name, String phone, String address, DogShelterMenu botMenu, Boolean isAdmin) {
+    public Person(Long chatId, String name, String phone, String address, DogShelterMenu botMenu, Boolean isAdmin) {
         this.chatId = chatId;
         this.name = name;
         this.phone = phone;
@@ -33,7 +35,7 @@ public class DogShelterPerson {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DogShelterPerson person)) return false;
+        if (!(o instanceof Person person)) return false;
         return getChatId().equals(person.getChatId());
     }
 
