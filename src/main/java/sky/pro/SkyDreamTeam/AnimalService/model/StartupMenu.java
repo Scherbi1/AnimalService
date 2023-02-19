@@ -1,4 +1,4 @@
-package sky.pro.SkyDreamTeam.AnimalService.model.menu;
+package sky.pro.SkyDreamTeam.AnimalService.model;
 
 import java.util.Arrays;
 import java.util.List;

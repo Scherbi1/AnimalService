@@ -8,9 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import sky.pro.SkyDreamTeam.AnimalService.exceptions.ImageNotFoundException;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterImage;
-import sky.pro.SkyDreamTeam.AnimalService.model.Image;
 import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterImageRepository;
-import sky.pro.SkyDreamTeam.AnimalService.repository.ImageRepository;
 import sky.pro.SkyDreamTeam.AnimalService.utils.JavaFileToMultipartFile;
 
 import java.io.*;
@@ -19,8 +17,6 @@ import java.nio.file.Path;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtension;
-
-
 
 @Service
 @Transactional

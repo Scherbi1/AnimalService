@@ -60,4 +60,12 @@ public class CatShelterReport {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 }

@@ -3,7 +3,7 @@ package sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPerson;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
 
 public interface DogShelterPersonRepository extends JpaRepository<DogShelterPerson, Long> {
 

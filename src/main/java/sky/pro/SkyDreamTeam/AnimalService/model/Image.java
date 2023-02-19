@@ -21,14 +21,12 @@ public class  Image {
 
     @OneToOne
     private DogShelterReport report;
- /*   @OneToOne
-    private CatShelterReport reportCat;*/
-
+    @OneToOne
+    private CatShelterReport reportCat;
     @OneToOne
     private DogShelterPet pet;
-
-   /* @OneToOne
-    private CatShelterPet petCat;*/
+    @OneToOne
+    private CatShelterPet petCat;
 
 
     public DogShelterReport getReport() {
