@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterMenu;
 
-import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterReport;
+import sky.pro.SkyDreamTeam.AnimalService.model.Report;
 import sky.pro.SkyDreamTeam.AnimalService.repository.InformationRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.*;
 
@@ -188,22 +188,20 @@ public class CatShelterMenuService {
         }
     }
 
-    public void createNewPerson(Update update) {
+    public void creatNewPerson(Update update) {
         long chatId = update.message().chat().id();
         String name = update.message().chat().firstName() +
                 " @" + update.message().chat().username();
         String phone = "none";
         String addres = "none";
         CatShelterMenu botMenu = START_C;
-        CatShelterPet catShelterPet=null;
         CatShelterPerson newPerson = new CatShelterPerson(
                 update.message().chat().id(),
                 name,
                 phone,
                 addres,
-                botMenu,
-                catShelterPet);
-        catShelterPersonService.createPerson(newPerson);
+                botMenu);
+        catShelterPersonService.creatPerson(newPerson);
         String message = "Добро пожаловать в Приют для Кошек!";
         telegramBot.execute(new SendMessage(chatId, message));
         sendStartMassage(chatId);
@@ -352,10 +350,6 @@ public class CatShelterMenuService {
     }
 
     private void sendReportMassage(long chatId) {
-        if (catShelterPersonService.getPetIdByChatId(chatId) == null) {
-            telegramBot.execute(new SendMessage(chatId, "У вас пока нет собаки."));
-            return;
-        }
         String message = "Меню отчета. Напишите подробный отчет про питомца.";
         creatKeybordFromList(chatId, message, REPORT_C);
         logger.info("Cat shelter sendReportMassage to chatId: {}", chatId);
@@ -432,7 +426,7 @@ public class CatShelterMenuService {
     }
 
     private void saveImageToBDAndDisc(Update update, String discripton) {
-        logger.info("Cat shelter Processing photo load from telegram");
+        logger.info("Processing photo load from telegram");
         PhotoSize[] photo = update.message().photo();
         String fileId = photo[photo.length - 1].fileId();
         GetFile request = new GetFile(fileId);

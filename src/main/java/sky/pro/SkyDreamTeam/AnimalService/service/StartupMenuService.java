@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sky.pro.SkyDreamTeam.AnimalService.model.StartupMenu;
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterMenuService;
-import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterMenuService;
 
 import java.util.List;
 import static sky.pro.SkyDreamTeam.AnimalService.model.StartupMenu.*;
@@ -67,12 +66,12 @@ public class StartupMenuService {
     }
 
     private void sendDogShelterMassage(Update update) {
-        dogShelterMenuService.createNewPerson(update);
+        dogShelterMenuService.creatNewPerson(update);
         logger.info("sendDogShelterMassage to chatId: {}", update);
     }
 
     private void sendCatShelterMassage(Update update) {
-        catShelterMenuService.createNewPerson(update);
+        catShelterMenuService.creatNewPerson(update);
         logger.info("sendCatShelterMassage to chatId: {}", update);
     }
 
