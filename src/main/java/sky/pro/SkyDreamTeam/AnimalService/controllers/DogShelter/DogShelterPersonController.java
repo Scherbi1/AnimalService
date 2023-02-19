@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPerson;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterPersonService;
 
 @RestController

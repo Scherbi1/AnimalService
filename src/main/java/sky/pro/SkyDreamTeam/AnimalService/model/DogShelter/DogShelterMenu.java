@@ -1,4 +1,4 @@
-package sky.pro.SkyDreamTeam.AnimalService.model.menu;
+package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
 
 import java.util.Arrays;
 import java.util.List;

@@ -8,16 +8,14 @@ import sky.pro.SkyDreamTeam.AnimalService.repository.ReportRepository;
 
 @Service
 public class ReportService {
-
     private final ReportRepository reportRepository;
-
-    public ReportService(ReportRepository reportRepository, PersonService personService) {
+    Logger logger = LoggerFactory.getLogger(ReportService.class);
+    public ReportService(ReportRepository reportRepository) {
         this.reportRepository = reportRepository;
     }
-    Logger logger = LoggerFactory.getLogger(ImageService.class);
 
     public Report creatReport(Report report) {
-                logger.info("Was invoked method for creatReport");
+        logger.info("Was invoked method for creatReport");
         return reportRepository.save(report);
     }
 

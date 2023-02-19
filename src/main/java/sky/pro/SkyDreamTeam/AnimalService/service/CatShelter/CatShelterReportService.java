@@ -3,21 +3,22 @@ package sky.pro.SkyDreamTeam.AnimalService.service.CatShelter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import sky.pro.SkyDreamTeam.AnimalService.model.Report;
-import sky.pro.SkyDreamTeam.AnimalService.repository.ReportRepository;
-import sky.pro.SkyDreamTeam.AnimalService.service.ImageService;
+
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterReport;
+import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterReportRepository;
 
 @Service
 public class CatShelterReportService {
-    private final ReportRepository reportRepository;
-
-    public CatShelterReportService(ReportRepository reportRepository) {
-        this.reportRepository = reportRepository;
+    private final CatShelterReportRepository catShelterReportRepository;
+    Logger logger = LoggerFactory.getLogger(CatShelterReportService.class);
+    public CatShelterReportService(CatShelterReportRepository catShelterReportRepository) {
+        this.catShelterReportRepository = catShelterReportRepository;
     }
-    Logger logger = LoggerFactory.getLogger(ImageService.class);
 
-    public Report crereReport(Report report) {
-        logger.info("Was invoked method for creatReport");
-        return reportRepository.save(report);
+    public CatShelterReport creatReport(CatShelterReport report) {
+        logger.info("Was invoked method for Cat shelter creatReport");
+        return catShelterReportRepository.save(report);
     }
+
+
 }
