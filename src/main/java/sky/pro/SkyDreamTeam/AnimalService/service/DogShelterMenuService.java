@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.model.Person;
 
 import sky.pro.SkyDreamTeam.AnimalService.model.Report;
@@ -23,7 +23,7 @@ import sky.pro.SkyDreamTeam.AnimalService.repository.InformationRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu.*;
+import static sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu.*;
 import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.getExtension;
 import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.saveImageToDisk;
 

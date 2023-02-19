@@ -4,10 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPerson;
-import sky.pro.SkyDreamTeam.AnimalService.model.Person;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterPersonRepository;
-import sky.pro.SkyDreamTeam.AnimalService.repository.PersonRepository;
 
 @Service
 public class DogShelterPersonService {

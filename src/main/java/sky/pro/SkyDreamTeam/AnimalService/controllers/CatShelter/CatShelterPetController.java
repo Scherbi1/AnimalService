@@ -5,20 +5,14 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterImage;
+
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
-import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterImage;
-import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
-import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterImageService;
+
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPetService;
 
-import java.io.IOException;
 
 @RestController
 @RequestMapping(path = "catShelter/pet")

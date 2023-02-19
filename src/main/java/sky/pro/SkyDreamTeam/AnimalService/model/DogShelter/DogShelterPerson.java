@@ -1,7 +1,5 @@
 package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
 
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.DogShelterMenu;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;

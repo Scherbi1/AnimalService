@@ -8,10 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.StartupMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.StartupMenu;
+import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterMenuService;
 
 import java.util.List;
-import static sky.pro.SkyDreamTeam.AnimalService.model.menu.StartupMenu.*;
+import static sky.pro.SkyDreamTeam.AnimalService.model.StartupMenu.*;
 
 @Service
 public class StartupMenuService {

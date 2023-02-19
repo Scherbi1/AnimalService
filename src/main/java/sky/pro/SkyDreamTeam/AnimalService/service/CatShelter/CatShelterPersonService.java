@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
-import sky.pro.SkyDreamTeam.AnimalService.model.menu.CatShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterPersonRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.TelegramBotService;
 
@@ -58,5 +58,14 @@ public class CatShelterPersonService {
         editPerson(person);
         logger.debug("setBotMenuByChatId id {} is edited", botMenu);
         return botMenu;
+    }
+
+    public String setPhoneByChatId(long chatId, String phone) {
+        logger.info("Was invoked method for Cat Shelter setPhoneByChatId");
+        CatShelterPerson person=findPersonByChatId(chatId);
+        person.setPhone(phone);
+        editPerson(person);
+        logger.debug("Cat Shelter setPhoneByChatId id {} is edited", phone);
+        return phone;
     }
 }
