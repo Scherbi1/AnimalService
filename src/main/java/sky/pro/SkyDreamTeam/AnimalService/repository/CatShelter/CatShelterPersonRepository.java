@@ -11,9 +11,11 @@ public interface CatShelterPersonRepository extends JpaRepository<CatShelterPers
 
     CatShelterPerson findByChatId(long id);
 
-    @Query(value = "SELECT bot_menu FROM cat_shelter_person where chat_id=:ChatId", nativeQuery = true)
-    CatShelterMenu getBotMenuByChatId(long ChatId);
+    @Query(value = "SELECT bot_menu FROM cat_shelter_person where chat_id=:chatId", nativeQuery = true)
+    CatShelterMenu getBotMenuByChatId(long chatId);
 
+    @Query(value = "SELECT cat_id FROM cat_shelter_person where chat_id=:chatId", nativeQuery = true)
+    Long getPetIdShelterPetByChatId(long chatId);
     CatShelterPerson save(CatShelterPerson person);
 
 }

@@ -1,7 +1,11 @@
 package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
 
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
@@ -12,8 +16,10 @@ public class DogShelterPerson {
     private String phone;
     private String address;
     private DogShelterMenu botMenu;
-    private Boolean isAdmin;
 
+    @OneToOne
+    @JoinColumn(name = "dog_id")
+    private DogShelterPet dogShelterPet;
 
 
     public DogShelterPerson() {
@@ -21,13 +27,13 @@ public class DogShelterPerson {
     }
 
 
-    public DogShelterPerson(Long chatId, String name, String phone, String address, DogShelterMenu botMenu, Boolean isAdmin) {
+    public DogShelterPerson(Long chatId, String name, String phone, String address, DogShelterMenu botMenu, DogShelterPet dogShelterPet) {
         this.chatId = chatId;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.botMenu = botMenu;
-        this.isAdmin = isAdmin;
+        this.dogShelterPet = dogShelterPet;
     }
 
     @Override
@@ -83,15 +89,11 @@ public class DogShelterPerson {
         this.address = address;
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
+    public DogShelterPet getDogShelterPet() {
+        return dogShelterPet;
     }
 
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
+    public void setDogShelterPet(DogShelterPet dogShelterPet) {
+        this.dogShelterPet = dogShelterPet;
     }
-
-
-
-
 }

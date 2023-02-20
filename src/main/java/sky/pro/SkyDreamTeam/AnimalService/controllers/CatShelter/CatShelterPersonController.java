@@ -42,7 +42,7 @@ public class CatShelterPersonController {
                                          @RequestBody CatShelterPerson person) {
 
         logger.debug("Person id {} is created", person.getChatId());
-        return personService.creatPerson(person);
+        return personService.createPerson(person);
     }
     @Operation(summary = "Редактирование записи о пользователе",
             responses = {@ApiResponse(
