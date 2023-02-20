@@ -18,22 +18,22 @@ public class CatShelterPetService {
     Logger logger = LoggerFactory.getLogger(CatShelterPetService.class);
 
     public CatShelterPet createPet(CatShelterPet pet) {
-        logger.info("Was invoked method for createPet");
+        logger.info("Cat shelter Was invoked method for createPet");
         return petRepository.save(pet);
     }
 
     public CatShelterPet editPet(CatShelterPet pet) {
-        logger.info("Was invoked method for editPet");
+        logger.info("Cat shelter Was invoked method for editPet");
         return petRepository.save(pet);
     }
 
     public CatShelterPet findPetByName(String name) {
-        logger.info("Was invoked method for findPerson");
+        logger.info("Cat shelter Was invoked method for findPerson");
         return petRepository.findCatShelterPetByName(name).orElseThrow(PetNotFoundException::new);
     }
 
     public void deletePet(long id) {
-        logger.info("Was invoked method for deletePet");
+        logger.info("Cat shelter Was invoked method for deletePet");
         petRepository.deleteById(id);
     }
 }

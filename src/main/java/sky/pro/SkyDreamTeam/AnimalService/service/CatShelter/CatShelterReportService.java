@@ -16,7 +16,7 @@ public class CatShelterReportService {
     }
 
     public CatShelterReport creatReport(CatShelterReport report) {
-        logger.info("Was invoked method for Cat shelter creatReport");
+        logger.info("Cat shelter Was invoked method for Cat shelter creatReport");
         return catShelterReportRepository.save(report);
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import sky.pro.SkyDreamTeam.AnimalService.model.Image;
 import sky.pro.SkyDreamTeam.AnimalService.repository.ImageRepository;
 import sky.pro.SkyDreamTeam.AnimalService.utils.JavaFileToMultipartFile;
+import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.getExtension;
 
 
 ;import java.io.*;
@@ -33,7 +34,7 @@ public class ImageService {
     public void uploadImage(String discription, MultipartFile imageFile) throws IOException {
         logger.info("Was invoked method for uploadPhoto");
 
-        Path filePath = Path.of(imageDir, discription + "." + getExtensions(imageFile.getOriginalFilename()));
+        Path filePath = Path.of(imageDir, discription + "." + getExtension(imageFile.getOriginalFilename()));
         Files.createDirectories(filePath.getParent());
         Files.deleteIfExists(filePath);
         try (
@@ -81,8 +82,5 @@ public class ImageService {
         logger.info("Was invoked method for findImage");
         return imageRepository.findByDiscription(discription);
     }
-    private String getExtensions(String fileName) {
-        logger.info("Was invoked method for getExtensions");
-        return fileName.substring(fileName.lastIndexOf(".") + 1);
-    }
+
 }
