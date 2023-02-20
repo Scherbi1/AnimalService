@@ -18,7 +18,7 @@ public class DogShelterPetService {
     Logger logger = LoggerFactory.getLogger(DogShelterPetService.class);
 
     public DogShelterPet createPet(DogShelterPet pet) {
-        logger.info("Was invoked method for createPet");
+        logger.info("Dog shelter Was invoked method for createPet");
         return petRepository.save(pet);
     }
 
@@ -27,7 +27,7 @@ public class DogShelterPetService {
     }
 
     public DogShelterPet findPetByName(String name) {
-        logger.info("Was invoked method for findPerson");
+        logger.info("Dog shelter Was invoked method for findPerson");
         return petRepository.findDogShelterPetByName(name).orElseThrow(PetNotFoundException::new);
     }
 

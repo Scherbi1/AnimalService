@@ -2,6 +2,8 @@ package sky.pro.SkyDreamTeam.AnimalService.model.CatShelter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
@@ -12,19 +14,22 @@ public class CatShelterPerson {
     private String phone;
     private String address;
     private CatShelterMenu botMenu;
-
+    @OneToOne
+    @JoinColumn(name = "cat_id")
+    private CatShelterPet catShelterPet;
 
     public CatShelterPerson() {
 
     }
 
 
-    public CatShelterPerson(Long chatId, String name, String phone, String address, CatShelterMenu botMenu) {
+    public CatShelterPerson(Long chatId, String name, String phone, String address, CatShelterMenu botMenu, CatShelterPet catShelterPet) {
         this.chatId = chatId;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.botMenu = botMenu;
+        this.catShelterPet = catShelterPet;
     }
 
     @Override
@@ -80,5 +85,11 @@ public class CatShelterPerson {
         this.address = address;
     }
 
+    public CatShelterPet getCatShelterPet() {
+        return catShelterPet;
+    }
 
+    public void setCatShelterPet(CatShelterPet catShelterPet) {
+        this.catShelterPet = catShelterPet;
+    }
 }

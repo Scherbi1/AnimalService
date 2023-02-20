@@ -11,6 +11,8 @@ import sky.pro.SkyDreamTeam.AnimalService.initialization.InformationLoader;
 import sky.pro.SkyDreamTeam.AnimalService.initialization.ImageLoader;
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterMenuService;
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPersonService;
+import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterMenuService;
+import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterPersonService;
 
 import javax.annotation.PostConstruct;
 
@@ -26,26 +28,25 @@ public class TelegramBotService implements UpdatesListener {
 
     private InformationLoader informationLoader;
     private final ImageLoader photoLoader;
-    private final PersonService personService;
+    private final DogShelterPersonService dogShelterPersonService;
 
     private final StartupMenuService startupMenuService;
     private final CatShelterPersonService catShelterPersonService;
 
-    private final DogShelterMenuService dogShelterMenu;
-    private final CatShelterMenuService catShelterMenu;
+    private final DogShelterMenuService dogShelterMenuService;
+    private final CatShelterMenuService catShelterMenuService;
 
     public TelegramBotService(InformationLoader informationLoader,
-                              ImageLoader photoLoader,
-                              PersonService personService,
+                              ImageLoader photoLoader, DogShelterPersonService dogShelterPersonService,
                               StartupMenuService startupMenuService, CatShelterPersonService catShelterPersonService,
-                              DogShelterMenuService dogShelterMenu, CatShelterMenuService catShelterMenu) {
+                              DogShelterMenuService dogShelterMenuService, CatShelterMenuService catShelterMenuService) {
         this.informationLoader = informationLoader;
         this.photoLoader = photoLoader;
-        this.personService = personService;
+        this.dogShelterPersonService = dogShelterPersonService;
         this.startupMenuService = startupMenuService;
         this.catShelterPersonService = catShelterPersonService;
-        this.dogShelterMenu = dogShelterMenu;
-        this.catShelterMenu = catShelterMenu;
+        this.dogShelterMenuService = dogShelterMenuService;
+        this.catShelterMenuService = catShelterMenuService;
     }
 
 
@@ -72,13 +73,13 @@ public class TelegramBotService implements UpdatesListener {
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             if (update.message() != null) {
-                if (personDB(update)) {
-                    dogShelterMenu.selectMenu(update);
+                if (dogShelterPersonDB(update)) {
+                    dogShelterMenuService.selectMenu(update);
                 }
                 if (catShelterPersonDB(update)) {
-                    catShelterMenu.selectMenu(update);
+                    catShelterMenuService.selectMenu(update);
                 }
-                if (!personDB(update) && !catShelterPersonDB(update)) {
+                if (!dogShelterPersonDB(update) && !catShelterPersonDB(update)) {
                     startupMenuService.selectMenu(update);
                 }
             }
@@ -87,8 +88,8 @@ public class TelegramBotService implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
-    private boolean personDB(Update update) {
-        if (personService.findPersonByChatId(update.message().chat().id()) == null) {
+    private boolean dogShelterPersonDB(Update update) {
+        if (dogShelterPersonService.findPersonByChatId(update.message().chat().id()) == null) {
             return false;
         }
         return true;
