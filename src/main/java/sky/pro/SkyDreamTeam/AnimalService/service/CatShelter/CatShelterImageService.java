@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import sky.pro.SkyDreamTeam.AnimalService.exceptions.ImageNotFoundException;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterImage;
@@ -11,14 +12,14 @@ import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterImage;
 import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterImageRepository;
 import sky.pro.SkyDreamTeam.AnimalService.utils.JavaFileToMultipartFile;
 
-import javax.transaction.Transactional;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static io.swagger.v3.core.util.AnnotationsUtils.getExtensions;
+
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtension;
+
 
 @Service
 @Transactional
@@ -33,7 +34,7 @@ public class CatShelterImageService {
     private CatShelterImageService(CatShelterImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
-    public void uploadImage(String description, MultipartFile imageFile) throws IOException {
+   public void uploadImage(String description, MultipartFile imageFile) throws IOException {
         logger.info("Was invoked method for uploadPhoto");
 
         Path filePath = Path.of(imageDir, description + "." + getExtensions(imageFile.getOriginalFilename()));
