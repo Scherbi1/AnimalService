@@ -7,7 +7,10 @@ import sky.pro.SkyDreamTeam.AnimalService.exceptions.PetNotFoundException;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterPetRepository;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class DogShelterPetService {
     private final DogShelterPetRepository petRepository;
 
@@ -32,7 +35,12 @@ public class DogShelterPetService {
     }
 
     public void deletePet(long id) {
+        logger.info("Dog shelter Was invoked method for deletePet");
         petRepository.deleteById(id);
     }
 
+    public void deletePet(String name) {
+        logger.info("Dog shelter Was invoked method for deletePet");
+        petRepository.removeByName(name);
+    }
 }
