@@ -7,7 +7,10 @@ import sky.pro.SkyDreamTeam.AnimalService.exceptions.PetNotFoundException;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterPetRepository;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class CatShelterPetService {
     private final CatShelterPetRepository petRepository;
 
@@ -28,12 +31,16 @@ public class CatShelterPetService {
     }
 
     public CatShelterPet findPetByName(String name) {
-        logger.info("Cat shelter Was invoked method for findPerson");
+        logger.info("Cat shelter Was invoked method for findPet");
         return petRepository.findCatShelterPetByName(name).orElseThrow(PetNotFoundException::new);
     }
 
     public void deletePet(long id) {
         logger.info("Cat shelter Was invoked method for deletePet");
         petRepository.deleteById(id);
+    }
+    public void deletePet(String name) {
+        logger.info("Cat shelter Was invoked method for deletePet");
+        petRepository.removeByName(name);
     }
 }
