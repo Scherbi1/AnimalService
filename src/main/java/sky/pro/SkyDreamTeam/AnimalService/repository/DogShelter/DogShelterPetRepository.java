@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface DogShelterPetRepository extends JpaRepository<DogShelterPet, Long> {
     Optional<DogShelterPet> findDogShelterPetByName (String name);
     List<DogShelterPet> findDogShelterPetByBreed (String breed);
+
+    void removeByName(String name);
 }

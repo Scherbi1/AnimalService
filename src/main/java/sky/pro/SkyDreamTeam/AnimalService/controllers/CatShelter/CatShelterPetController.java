@@ -13,6 +13,8 @@ import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPetService;
 
+import javax.transaction.Transactional;
+
 
 @RestController
 @RequestMapping(path = "catShelter/pet")
@@ -90,9 +92,17 @@ public class CatShelterPetController {
                     )
             )}
     )
-    @DeleteMapping("{id}")
-    public ResponseEntity deletePet(@PathVariable Long id) {
-        petService.deletePet(id);
+    @DeleteMapping
+    public ResponseEntity deletePet(@Parameter(description = "id животного")
+                                        @RequestParam(required = false) Long id,
+                                    @Parameter(description = "имя животного")
+                                    @RequestParam(required = false) String name) {
+        if (id != null) {
+            petService.deletePet(id);
+        }
+        if (name != null) {
+            petService.deletePet(name);
+        }
         return ResponseEntity.ok().build();
     }
 }

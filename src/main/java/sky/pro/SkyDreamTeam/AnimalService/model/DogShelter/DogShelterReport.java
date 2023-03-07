@@ -27,7 +27,7 @@ public class DogShelterReport {
     }
 
     @OneToOne
-    @JoinColumn(name = "discription")
+    @JoinColumn(name = "description")
     private Image image;
     public Long getId() {
         return id;
