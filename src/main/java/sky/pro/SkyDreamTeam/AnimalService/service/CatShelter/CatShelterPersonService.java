@@ -12,6 +12,8 @@ import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterPerson
 import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterPetRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.TelegramBotService;
 
+import java.util.Collection;
+
 
 @Service
 public class CatShelterPersonService {
@@ -76,6 +78,16 @@ public class CatShelterPersonService {
         return catShelterPersonRepository.findByChatId(id);
     }
 
+    /**
+     * Этот метод позволяет найти всех пользователей в базе данных приюта для кошек из Телеграм.
+     * <br> Используется метод репозитория {@link CatShelterPersonRepository#findByChatId(long)}
+     *
+     * @return данные о пользователях в формате JSON, которые были сохранены в БД
+     */
+    public Collection<CatShelterPerson> getAllCatShelterPerson() {
+        logger.info("Cat shelter Was invoked method for getAllCatShelterPerson");
+        return catShelterPersonRepository.findAll();
+    }
     /**
      * Этот метод возвращает уровень меню из Телеграм, в котором находится пользователь.
      * Он используется для работы Телеграм-бота
@@ -143,4 +155,6 @@ public class CatShelterPersonService {
         logger.debug("Cat Shelter setPhoneByChatId id {} is edited", phone);
         return phone;
     }
+
+
 }

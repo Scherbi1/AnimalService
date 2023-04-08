@@ -6,12 +6,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.util.Objects;
 
+
 @Entity
 public class CatShelterPerson {
     @Id
     private Long chatId;
     private String name;
     private String phone;
+    
     private String address;
     private CatShelterMenu botMenu;
     @OneToOne

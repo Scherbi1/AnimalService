@@ -8,8 +8,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterPetService;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping(path ="dogShelter/pet")
@@ -57,6 +60,11 @@ public class DogShelterPetController {
                                                 @PathVariable String name) {
         DogShelterPet pet = petService.findPetByName(name);
         return ResponseEntity.ok(pet);
+    }
+
+    @GetMapping("getAllDogPets")
+    public Collection<DogShelterPet> getAllDogPets() {
+        return petService.findAllDogPets();
     }
 
     @Operation(summary = "Редактирование записи о животном",

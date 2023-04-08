@@ -13,8 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterMenu;
+import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPersonService;
 import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterPersonService;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "catShelter/person")
@@ -79,9 +82,16 @@ public class CatShelterPersonController {
                             mediaType = MediaType.APPLICATION_JSON_VALUE)
             )}
     )
-    @GetMapping(path = "getBotMenu/ByChatId/{chatId}")
-    public ResponseEntity<CatShelterMenu> getBotMenuByChatId(@Parameter(description = "ChatId пользователя")
+    @GetMapping(path = "getCatShelterPerson/ByChatId/{chatId}")
+    public ResponseEntity<CatShelterPerson> getCatShelterPersonByChatId(@Parameter(description = "ChatId пользователя")
                                                              @PathVariable long chatId) {
-        return ResponseEntity.ok(personService.getBotMenuByChatId(chatId));
+        return ResponseEntity.ok(personService.findPersonByChatId(chatId));
     }
+
+    @GetMapping(path = "getAllCatShelterPerson")
+    public Collection<CatShelterPerson> getAllCatShelterPerson() {
+        return personService.getAllCatShelterPerson();
+    }
+
+
 }

@@ -2,6 +2,7 @@ package sky.pro.SkyDreamTeam.AnimalService.initialization;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import sky.pro.SkyDreamTeam.AnimalService.repository.ImageRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.ImageService;
@@ -14,6 +15,9 @@ import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtens
 
 @Service
 public class ImageLoader {
+
+    @Value("${telegram.bot.token}")
+    private String token;
     private final ImageRepository imageRepository;
     private final ImageService imageService;
     Logger logger  = LoggerFactory.getLogger(InformationLoader.class);
@@ -26,7 +30,7 @@ public class ImageLoader {
     private String loadContent = "true";
 
     public void loadPhoto(){
-
+        System.out.println(token);
         if (loadContent.equals("true")) {
             logger.info("Загрузка imageData loadContentInStart=true");
             File folder = new File("src/main/imageData");

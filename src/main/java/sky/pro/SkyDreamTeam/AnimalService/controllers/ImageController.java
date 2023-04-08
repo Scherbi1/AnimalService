@@ -18,7 +18,7 @@ import sky.pro.SkyDreamTeam.AnimalService.service.ImageService;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(path = "dogShelter/image")
+@RequestMapping(path = "/image")
 public class ImageController {
 
     private final ImageService imageService;
@@ -69,4 +69,5 @@ public class ImageController {
         headers.setContentLength(image.getData().length);
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(image.getData());
     }
+
 }

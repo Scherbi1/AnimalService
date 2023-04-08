@@ -15,6 +15,8 @@ import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterMenu;
 import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterPersonService;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping(path = "dogShelter/person")
 public class DogShelterPersonController {
@@ -81,10 +83,16 @@ public class DogShelterPersonController {
                             mediaType = MediaType.APPLICATION_JSON_VALUE)
             )}
     )
-    @GetMapping(path = "getBotMenu/ByChatId/{chatId}")
-    public ResponseEntity<DogShelterMenu> getBotMenuByChatId(@Parameter(description = "ChatId пользователя")
+    @GetMapping(path = "getDogShelterPerson/ByChatId/{chatId}")
+    public ResponseEntity<DogShelterPerson> getDogShelterPersonByChatId(@Parameter(description = "ChatId пользователя")
                                                              @PathVariable long chatId) {
-        return ResponseEntity.ok(personService.getBotMenuByChatId(chatId));
+        return ResponseEntity.ok(personService.findPersonByChatId(chatId));
+    }
+
+
+    @GetMapping(path = "getAllDogShelterPerson")
+    public Collection<DogShelterPerson> getAllDogShelterPerson() {
+        return personService.getAllDogShelterPerson();
     }
 
 

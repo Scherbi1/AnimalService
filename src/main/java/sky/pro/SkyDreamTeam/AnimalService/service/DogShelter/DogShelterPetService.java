@@ -9,6 +9,7 @@ import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterPetRepository;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 
 @Service
 @Transactional
@@ -57,6 +58,16 @@ public class DogShelterPetService {
     }
 
     /**
+     * Этот метод позволяет найти все записи о питомцах в базе данных собак.
+     * <br> Используется метод репозитория {@link DogShelterPetRepository#findAll()}
+     *
+     * @return данные о животном в формате JSON, которые были сохранены в БД
+     */
+    public Collection<DogShelterPet> findAllDogPets() {
+        logger.info("Dog shelter Was invoked method for findAllDogPets");
+        return petRepository.findAll();
+    }
+    /**
      * Этот метод удаляет запись о питомце в базе данных собак по ID.
      * <br> Используется метод репозитория {@link DogShelterPetRepository#deleteById(Object)}
      *
@@ -77,4 +88,6 @@ public class DogShelterPetService {
         logger.info("Dog shelter Was invoked method for deletePet");
         petRepository.removeByName(name);
     }
+
+
 }

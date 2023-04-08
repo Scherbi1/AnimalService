@@ -9,11 +9,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPetService;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 
 
 @RestController
@@ -42,6 +44,7 @@ public class CatShelterPetController {
         CatShelterPet createdPet = petService.createPet(pet);
         return ResponseEntity.ok(createdPet);
     }
+
     @Operation(summary = "Поиск животного в базе по имени",
             responses = {@ApiResponse(
                     responseCode = "200",
@@ -63,6 +66,14 @@ public class CatShelterPetController {
         CatShelterPet pet = petService.findPetByName(name);
         return ResponseEntity.ok(pet);
     }
+
+    @GetMapping("getAllCatPets")
+    public Collection<CatShelterPet> getAllCatPets() {
+        return petService.findAllCatPets();
+    }
+
+
+
     @Operation(summary = "Редактирование записи о животном",
             responses = {@ApiResponse(
                     responseCode = "200",
@@ -82,6 +93,7 @@ public class CatShelterPetController {
         }
         return ResponseEntity.ok(updatedPet);
     }
+
     @Operation(summary = "Удаление записи о животном",
             responses = {@ApiResponse(
                     responseCode = "200",
@@ -94,7 +106,7 @@ public class CatShelterPetController {
     )
     @DeleteMapping
     public ResponseEntity deletePet(@Parameter(description = "id животного")
-                                        @RequestParam(required = false) Long id,
+                                    @RequestParam(required = false) Long id,
                                     @Parameter(description = "имя животного")
                                     @RequestParam(required = false) String name) {
         if (id != null) {

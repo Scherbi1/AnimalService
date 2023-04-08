@@ -14,6 +14,9 @@ import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterPerson
 import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterPersonRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterPersonService;
 
+import java.util.Collection;
+import java.util.Collections;
+
 @Service
 public class DogShelterPersonService {
 
@@ -75,6 +78,16 @@ public class DogShelterPersonService {
     public DogShelterPerson findPersonByChatId(long id) {
         logger.info("Dog Shelter Was invoked method for findPerson");
         return dogShelterPersonRepository.findByChatId(id);
+    }
+
+    /**
+     * Этот метод позволяет найти всех пользователей в базе данных приюта для собак Телеграм.
+     * <br> Используется метод репозитория {@link DogShelterPersonRepository#findByChatId(long)}
+     *
+     * @return данные о пользователях в формате JSON, которые были сохранены в БД
+     */
+    public Collection<DogShelterPerson> getAllDogShelterPerson() {
+        return Collections.unmodifiableCollection(dogShelterPersonRepository.findAll());
     }
 
     /**
@@ -144,4 +157,6 @@ public class DogShelterPersonService {
         logger.debug("Dog Shelter setPhoneByChatId id {} is edited", phone);
         return phone;
     }
+
+
 }
