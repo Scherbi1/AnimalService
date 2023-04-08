@@ -15,6 +15,7 @@ import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.getExtension;
 ;import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtension;
@@ -81,6 +82,11 @@ public class ImageService {
     public Image findImageByDiscription(String discription) {
         logger.info("Was invoked method for findImage");
         return imageRepository.findByDiscription(discription);
+    }
+
+    public Collection<Image> findAllImage() {
+        logger.info("Was invoked method for findAllImage");
+        return imageRepository.findAll();
     }
 
 }

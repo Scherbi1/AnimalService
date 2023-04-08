@@ -16,6 +16,7 @@ import sky.pro.SkyDreamTeam.AnimalService.model.Image;
 import sky.pro.SkyDreamTeam.AnimalService.service.ImageService;
 
 import java.io.IOException;
+import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "/image")
@@ -68,6 +69,12 @@ public class ImageController {
         headers.setContentType(MediaType.parseMediaType(image.getMediaType()));
         headers.setContentLength(image.getData().length);
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(image.getData());
+    }
+
+
+    @GetMapping(value = "/findAllImage")
+    public ResponseEntity<Collection<Image>> findAllImage() {
+        return ResponseEntity.ok(imageService.findAllImage());
     }
 
 }

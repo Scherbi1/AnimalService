@@ -64,7 +64,7 @@ public class DogShelterPetController {
 
     @GetMapping("getAllDogPets")
     public Collection<DogShelterPet> getAllDogPets() {
-        return petService.findAllDogPets();
+        return ResponseEntity.ok(petService.findAllDogPets()).getBody();
     }
 
     @Operation(summary = "Редактирование записи о животном",

@@ -92,7 +92,8 @@ public class DogShelterPersonController {
 
     @GetMapping(path = "getAllDogShelterPerson")
     public Collection<DogShelterPerson> getAllDogShelterPerson() {
-        return personService.getAllDogShelterPerson();
+
+        return ResponseEntity.ok(personService.getAllDogShelterPerson()).getBody();
     }
 
 

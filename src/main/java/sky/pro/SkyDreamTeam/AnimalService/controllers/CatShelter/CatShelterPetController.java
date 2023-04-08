@@ -69,7 +69,7 @@ public class CatShelterPetController {
 
     @GetMapping("getAllCatPets")
     public Collection<CatShelterPet> getAllCatPets() {
-        return petService.findAllCatPets();
+        return ResponseEntity.ok(petService.findAllCatPets()).getBody();
     }
 
 
