@@ -224,7 +224,7 @@ public class CatShelterMenuService {
     private void sendContactMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_contact").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_contact").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы уточнить контактные данные";
         }
@@ -244,7 +244,7 @@ public class CatShelterMenuService {
     private void sendShelterInfoMessage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_info").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_info").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать информацию о приюте";
         }
@@ -256,7 +256,7 @@ public class CatShelterMenuService {
     private void sendSecurityMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_security").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_security").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы уточнить правила безопастности";
         }
@@ -275,7 +275,7 @@ public class CatShelterMenuService {
     private void sendGetPetRulesMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_rules").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_rules").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать правила знакомства с кошкой";
         }
@@ -287,7 +287,7 @@ public class CatShelterMenuService {
     private void sendGetPetDocsMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_docs").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_docs").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про документы";
         }
@@ -299,7 +299,7 @@ public class CatShelterMenuService {
     private void sendGetPetRejectMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_reject").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_reject").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать причины отказа";
         }
@@ -317,7 +317,7 @@ public class CatShelterMenuService {
     private void sendGetPetRecomTransportMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_transport").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_transport").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про транспортировку кошки";
         }
@@ -329,7 +329,7 @@ public class CatShelterMenuService {
     private void sendGetPetRecomHouseMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_house").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_house").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про дом для кошки";
         }
@@ -341,7 +341,7 @@ public class CatShelterMenuService {
     private void sendGetPetRecomHouseInvalidCatMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("catshelter_house_invalidcat").getAnswer();
+            message = informationRepository.findByQuestion("catshelter_house_invalidcat").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про дом для кошки с инвлидностью";
         }
@@ -385,7 +385,7 @@ public class CatShelterMenuService {
     }
 
     private void reportProcess(long chatId, String updateMessage) {
-        informationService.creatInformation(chatId + "", updateMessage);
+        informationService.createInformation(chatId + "", updateMessage);
         catShelterPersonService.setBotMenuByChatId(chatId, SENDFOTO_C);
         telegramBot.execute(new SendMessage(chatId, "Прикрепите фотографию кошки."));
         logger.info("Cat shelter reportProcess to chatId: {}", chatId);

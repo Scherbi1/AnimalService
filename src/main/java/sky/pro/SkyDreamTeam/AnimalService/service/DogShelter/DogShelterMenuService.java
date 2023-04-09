@@ -254,7 +254,7 @@ public class DogShelterMenuService {
     }
 
     private void sendContactMassage(long chatId) {
-        String massage = informationRepository.findLastByQuestion("dogshelter_contact").getAnswer();
+        String massage = informationRepository.findByQuestion("dogshelter_contact").getAnswer();
         telegramBot.execute(new SendMessage(chatId, massage));
 
         try {
@@ -269,7 +269,7 @@ public class DogShelterMenuService {
     }
 
     private void sendShelterInfoMassage(long chatId) {
-        String massage = informationRepository.findLastByQuestion("dogshelter_info").getAnswer();
+        String massage = informationRepository.findByQuestion("dogshelter_info").getAnswer();
         SendMessage message = new SendMessage(chatId, massage);
         telegramBot.execute(message);
         logger.info("Dog Shelter sendShelterInfoMassage to chatId: {}", chatId);
@@ -278,7 +278,7 @@ public class DogShelterMenuService {
     private void sendSecurityMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_security").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_security").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы уточнить правила безопастности";
         }
@@ -297,7 +297,7 @@ public class DogShelterMenuService {
     private void sendGetPetRulesMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_rules").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_rules").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать правила знакомства с собакой";
         }
@@ -309,7 +309,7 @@ public class DogShelterMenuService {
     private void sendGetPetDocsMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_docs").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_docs").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про документы";
         }
@@ -321,7 +321,7 @@ public class DogShelterMenuService {
     private void sendGetPetRejectMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_reject").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_reject").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать причины отказа";
         }
@@ -339,7 +339,7 @@ public class DogShelterMenuService {
     private void sendGetPetRecomTransportMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_transport").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_transport").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про транспортировку кошки";
         }
@@ -351,7 +351,7 @@ public class DogShelterMenuService {
     private void sendGetPetRecomHouseMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_house").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_house").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про дом для собаки";
         }
@@ -363,7 +363,7 @@ public class DogShelterMenuService {
     private void sendGetPetRecomHousePuppyMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_house_puppy").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_house_puppy").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про дом для щенка";
         }
@@ -375,7 +375,7 @@ public class DogShelterMenuService {
     private void sendGetPetRecomHouseInvalidCatMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_house_invaliddog").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_house_invaliddog").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про дом для собаки с инвлидностью";
         }
@@ -386,7 +386,7 @@ public class DogShelterMenuService {
     private void sendGetPetRecomKinologMassage(long chatId) {
         String message = "None";
         try {
-            message = informationRepository.findLastByQuestion("dogshelter_kinolog").getAnswer();
+            message = informationRepository.findByQuestion("dogshelter_kinolog").getAnswer();
         } catch (NullPointerException e) {
             message = "Свяжитесь с администрацией что бы узнать про рекомендации кинолога";
         }
@@ -427,7 +427,7 @@ public class DogShelterMenuService {
     }
 
     private void reportProcess(long chatId, String updateMessage) {
-        informationService.creatInformation(chatId + "", updateMessage);
+        informationService.createInformation(chatId + "", updateMessage);
         dogShelterPersonService.setBotMenuByChatId(chatId, SENDFOTO_D);
         telegramBot.execute(new SendMessage(chatId, "Прикрепите фотографию питомца."));
         logger.info("Dog Shelter reportProcess to chatId: {}", chatId);

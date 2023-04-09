@@ -8,16 +8,13 @@ import sky.pro.SkyDreamTeam.AnimalService.repository.ImageRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.ImageService;
 
 import java.io.File;
-import java.io.IOException;
-
-
-import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtension;
 
 @Service
 public class ImageLoader {
 
-    @Value("${telegram.bot.token}")
-    private String token;
+
+    @Value("${loadContentInStart}")
+    private String loadContentInStart;
     private final ImageRepository imageRepository;
     private final ImageService imageService;
     Logger logger  = LoggerFactory.getLogger(InformationLoader.class);
@@ -27,11 +24,10 @@ public class ImageLoader {
         this.imageService = imageService;
     }
 
-    private String loadContent = "true";
+
 
     public void loadPhoto(){
-        System.out.println(token);
-        if (loadContent.equals("true")) {
+        if (loadContentInStart.equals("true")) {
             logger.info("Загрузка imageData loadContentInStart=true");
             File folder = new File("src/main/imageData");
             File[] listOfFiles = folder.listFiles();

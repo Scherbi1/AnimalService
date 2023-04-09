@@ -19,6 +19,8 @@ import static sky.pro.SkyDreamTeam.AnimalService.utils.FileUtil.removeFileExtens
 
 @Service
 public class InformationLoader {
+    @Value("${loadContentInStart}")
+    private String loadContentInStart;
     private final InformationRepository informationRepository;
 
     public InformationLoader(InformationRepository informationRepository) {
@@ -28,11 +30,11 @@ public class InformationLoader {
     Logger logger = LoggerFactory.getLogger(InformationLoader.class);
 
 
-    private String loadContent="true";
+
 
     public void loadInfo() throws IOException {
 
-        if (loadContent.equals("true")) {
+        if (loadContentInStart.equals("true")) {
             logger.info("Загрузка information.data loadContentInStart=true");
             File folder = new File("src/main/informationData");
             File[] listOfFiles = folder.listFiles();
