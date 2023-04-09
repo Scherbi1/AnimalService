@@ -2,7 +2,7 @@ package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,9 +20,9 @@ import java.util.Objects;
 public class DogShelterPerson {
     @Id
     private Long chatId;
-    private String name;
+    private String fullName;
     private String phone;
-    private String address;
+    private String telegram;
     private DogShelterMenu botMenu;
 
     @OneToOne

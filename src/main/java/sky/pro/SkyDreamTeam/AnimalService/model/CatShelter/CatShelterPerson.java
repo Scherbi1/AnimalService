@@ -21,10 +21,10 @@ import java.util.Objects;
 public class CatShelterPerson {
     @Id
     private Long chatId;
-    private String name;
+    private String fullName;
     private String phone;
 
-    private String address;
+    private String telegram;
     private CatShelterMenu botMenu;
     @OneToOne
     @JoinColumn(name = "cat_id")

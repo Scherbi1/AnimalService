@@ -221,17 +221,16 @@ public class DogShelterMenuService {
 
     public void createNewPerson(Update update) {
         long chatId = update.message().chat().id();
-        String name = update.message().chat().firstName() +
-                " @" + update.message().chat().username();
+        String fullName = update.message().chat().firstName();
         String phone = "none";
-        String addres = "none";
+        String telegram = " @" + update.message().chat().username();
         DogShelterMenu botMenu = START_D;
         DogShelterPet dogShelterPet=null;
         DogShelterPerson newPerson = new DogShelterPerson(
                 update.message().chat().id(),
-                name,
+                fullName,
                 phone,
-                addres,
+                telegram,
                 botMenu,
                 dogShelterPet);
         dogShelterPersonService.createPerson(newPerson);

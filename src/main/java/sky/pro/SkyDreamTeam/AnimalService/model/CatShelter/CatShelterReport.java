@@ -24,7 +24,6 @@ public class CatShelterReport {
 
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "discription")
     private Image image;
 
 }

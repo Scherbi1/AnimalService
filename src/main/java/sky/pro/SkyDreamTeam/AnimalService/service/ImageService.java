@@ -32,10 +32,10 @@ public class ImageService {
     public ImageService(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
-    public void uploadImage(String discription, MultipartFile imageFile) throws IOException {
+    public void uploadImage(String description, MultipartFile imageFile) throws IOException {
         logger.info("Was invoked method for uploadPhoto");
 
-        Path filePath = Path.of(imageDir, discription + "." + getExtension(imageFile.getOriginalFilename()));
+        Path filePath = Path.of(imageDir, description + "." + getExtension(imageFile.getOriginalFilename()));
         Files.createDirectories(filePath.getParent());
         Files.deleteIfExists(filePath);
         try (
@@ -48,7 +48,7 @@ public class ImageService {
             bis.transferTo(bos);
         }
         Image image = new Image();
-        image.setDiscription(discription);
+        image.setDescription(description);
         image.setFileSize(imageFile.getSize());
         image.setMediaType(imageFile.getContentType());
         image.setData(imageFile.getBytes());
@@ -81,7 +81,7 @@ public class ImageService {
     }
     public Image findImageByDiscription(String discription) {
         logger.info("Was invoked method for findImage");
-        return imageRepository.findByDiscription(discription);
+        return imageRepository.findByDescription(discription);
     }
 
     public Collection<Image> findAllImage() {

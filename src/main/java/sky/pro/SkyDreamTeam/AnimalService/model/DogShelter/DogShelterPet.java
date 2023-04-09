@@ -1,7 +1,7 @@
 package sky.pro.SkyDreamTeam.AnimalService.model.DogShelter;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
+import sky.pro.SkyDreamTeam.AnimalService.model.Image;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -18,7 +18,10 @@ public class DogShelterPet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String breed;
+    private String petInfo;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Image image;
 
     @OneToOne
     @JoinColumn(name = "chat_id")
@@ -29,13 +32,13 @@ public class DogShelterPet {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DogShelterPet that)) return false;
-        return getName().equals(that.getName()) && getBreed().equals(that.getBreed());
+        if (!(o instanceof DogShelterPet pet)) return false;
+        return getId().equals(pet.getId());
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getBreed());
+        return Objects.hash(getId());
     }
-
 }

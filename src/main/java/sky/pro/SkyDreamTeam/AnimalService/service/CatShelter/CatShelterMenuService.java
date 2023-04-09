@@ -190,17 +190,16 @@ public class CatShelterMenuService {
 
     public void createNewPerson(Update update) {
         long chatId = update.message().chat().id();
-        String name = update.message().chat().firstName() +
-                " @" + update.message().chat().username();
+        String fullName = update.message().chat().firstName();
         String phone = "none";
-        String addres = "none";
+        String telegram = " @" + update.message().chat().username();
         CatShelterMenu botMenu = START_C;
         CatShelterPet catShelterPet=null;
         CatShelterPerson newPerson = new CatShelterPerson(
                 update.message().chat().id(),
-                name,
+                fullName,
                 phone,
-                addres,
+                telegram,
                 botMenu,
                 catShelterPet);
         catShelterPersonService.createPerson(newPerson);

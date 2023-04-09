@@ -25,7 +25,6 @@ public class DogShelterReport {
 
 
     @OneToOne
-    @JoinColumn(name = "description")
     private Image image;
 
 }
