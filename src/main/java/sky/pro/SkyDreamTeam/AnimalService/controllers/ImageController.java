@@ -96,8 +96,9 @@ public class ImageController {
                     )
             )}
     )
-    @DeleteMapping
-    public void deleteImage(@PathVariable String description) {
+    @DeleteMapping(value = "/deleteImage/{description}")
+    public void deleteImage( @Parameter(description = "Название файла")
+            @PathVariable String description) {
         imageService.deleteImageByName(description);
     }
     @Operation(summary = "Редактирование файла картинки по названию",
