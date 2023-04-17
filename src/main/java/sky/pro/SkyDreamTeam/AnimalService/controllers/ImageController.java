@@ -71,10 +71,51 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(image.getData());
     }
 
-
+    @Operation(summary = "Поиск всех картинок",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Файл успешно загружен",
+                    content = @Content(
+                            mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
+                            schema = @Schema(implementation = Image.class)
+                    )
+            )}
+    )
     @GetMapping(value = "/findAllImage")
     public ResponseEntity<Collection<Image>> findAllImage() {
         return ResponseEntity.ok(imageService.findAllImage());
     }
 
+    @Operation(summary = "Удалить картинку по названию",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Файл успешно загружен",
+                    content = @Content(
+                            mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
+                            schema = @Schema(implementation = Image.class)
+                    )
+            )}
+    )
+    @DeleteMapping
+    public void deleteImage(@PathVariable String description) {
+        imageService.deleteImageByName(description);
+    }
+    @Operation(summary = "Редактирование файла картинки по названию",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Файл успешно загружен",
+                    content = @Content(
+                            mediaType = MediaType.MULTIPART_FORM_DATA_VALUE,
+                            schema = @Schema(implementation = Image.class)
+                    )
+            )}
+    )
+    @PutMapping(value = "/upload/{description}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> updateImage(@Parameter(description = "Название файла")
+                                              @PathVariable String description,
+                                              @Parameter(description = "Файл картинки")
+                                              @RequestParam MultipartFile photoFile) throws IOException {
+        imageService.updateImage(description, photoFile);
+        return ResponseEntity.ok().build();
+    }
 }

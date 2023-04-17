@@ -9,6 +9,7 @@ import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterReport;
 import sky.pro.SkyDreamTeam.AnimalService.repository.CatShelter.CatShelterReportRepository;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -35,7 +36,11 @@ public class CatShelterReportService {
         return catShelterReportRepository.findReportByChatId(chatId);
     }
 
-    public void deleteReport(long id) {
+    public Collection<CatShelterReport> findReportAll() {
+        return catShelterReportRepository.findAll();
+    }
+
+    public void deleteReport(Long id) {
         logger.info("Cat shelter Was invoked method for deletePet");
         catShelterReportRepository.deleteById(id);
     }

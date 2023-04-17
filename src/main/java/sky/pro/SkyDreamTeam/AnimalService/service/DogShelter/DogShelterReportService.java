@@ -1,5 +1,6 @@
 package sky.pro.SkyDreamTeam.AnimalService.service.DogShelter;
 
+import net.bytebuddy.matcher.CollectionErasureMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,13 @@ import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterReport;
 import sky.pro.SkyDreamTeam.AnimalService.repository.DogShelter.DogShelterReportRepository;
 import sky.pro.SkyDreamTeam.AnimalService.service.ImageService;
 
+import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 
 
 @Service
+@Transactional
 public class DogShelterReportService {
 
     private final DogShelterReportRepository dogShelterReportRepository;
@@ -32,6 +36,9 @@ public class DogShelterReportService {
         return dogShelterReportRepository.save(report);
     }
 
+    public Collection<DogShelterReport> findReportAll() {
+        return dogShelterReportRepository.findAll();
+    }
     public List<DogShelterReport> findReportByChatId(Long chatId) {
         logger.info("Cat shelter Was invoked method for findPet");
         return dogShelterReportRepository.findReportByChatId(chatId);
@@ -41,7 +48,7 @@ public class DogShelterReportService {
         logger.info("Cat shelter Was invoked method for deletePet");
         dogShelterReportRepository.deleteById(id);
     }
-    public void deleteReport(Long chatId) {
+    public void deleteReportByChatId(Long chatId) {
         logger.info("Cat shelter Was invoked method for deletePet");
         dogShelterReportRepository.removeAllByChatId(chatId);
     }

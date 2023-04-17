@@ -89,4 +89,30 @@ public class ImageService {
         return imageRepository.findAll();
     }
 
+    public void deleteImageByName(String description) {
+        imageRepository.deleteByDescription(description);
+    }
+    public void updateImage(String description, MultipartFile imageFile) throws IOException {
+        logger.info("Was invoked method for updatePhoto");
+
+        Path filePath = Path.of(imageDir, description + "." + getExtension(imageFile.getOriginalFilename()));
+        Files.createDirectories(filePath.getParent());
+        Files.deleteIfExists(filePath);
+        try (
+                InputStream is = imageFile.getInputStream();
+                OutputStream os = Files.newOutputStream(filePath, CREATE_NEW);
+                BufferedInputStream bis = new BufferedInputStream(is, 1024);
+                BufferedOutputStream bos = new BufferedOutputStream(os, 1024);
+        ) {
+
+            bis.transferTo(bos);
+        }
+        Image image = new Image();
+        image.setDescription(description);
+        image.setFileSize(imageFile.getSize());
+        image.setMediaType(imageFile.getContentType());
+        image.setData(imageFile.getBytes());
+        imageRepository.save(image);
+    }
+
 }

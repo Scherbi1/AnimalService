@@ -12,6 +12,7 @@ import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterReport;
 import sky.pro.SkyDreamTeam.AnimalService.service.CatShelter.CatShelterReportService;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -36,10 +37,11 @@ public class CatShelterReportController {
     )
     @PostMapping
     public ResponseEntity<CatShelterReport> createReport(@Parameter(description = "Данные отчета в формате JSON")
-                                                   @RequestBody CatShelterReport report) {
+                                                         @RequestBody CatShelterReport report) {
         CatShelterReport createdReport = reportService.creatReport(report);
         return ResponseEntity.ok(createdReport);
     }
+
     @Operation(summary = "Поиск отчетов в базе по ChatId пользователя",
             responses = {@ApiResponse(
                     responseCode = "200",
@@ -56,10 +58,30 @@ public class CatShelterReportController {
             )}
     )
     @GetMapping("{chatId}")
-    public ResponseEntity<List<CatShelterReport>> getReport(@Parameter(description = "Имя животного")
-                                                @PathVariable Long chatId) {
+    public ResponseEntity<List<CatShelterReport>> getReportByChatId(@Parameter(description = "Имя животного")
+                                                            @PathVariable Long chatId) {
         List<CatShelterReport> report = reportService.findReportByChatId(chatId);
         return ResponseEntity.ok(report);
+    }
+    @Operation(summary = "Поиск отчетов",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Отчеты найдены",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = CatShelterReport.class)
+                    )
+            ), @ApiResponse(
+                    responseCode = "404",
+                    description = "Отчеты не найдены в базе",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE)
+            )}
+    )
+
+    @GetMapping
+    public Collection<CatShelterReport> getReport() {
+        return reportService.findReportAll();
     }
     @Operation(summary = "Редактирование отчета",
             responses = {@ApiResponse(
@@ -72,14 +94,16 @@ public class CatShelterReportController {
             )}
     )
     @PutMapping()
+
     public ResponseEntity<CatShelterReport> updateReport(@Parameter(description = "Данные отчета в формате JSON")
-                                                   @RequestBody CatShelterReport report) {
+                                                         @RequestBody CatShelterReport report) {
         CatShelterReport updatedPet = reportService.editReport(report);
         if (updatedPet == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedPet);
     }
+
     @Operation(summary = "Удаление отчетов",
             responses = {@ApiResponse(
                     responseCode = "200",
@@ -92,9 +116,9 @@ public class CatShelterReportController {
     )
     @DeleteMapping
     public ResponseEntity deleteReport(@Parameter(description = "id отчета")
-                                    @RequestParam(required = false) Long id,
-                                    @Parameter(description = "ChatId пользователя")
-                                    @RequestParam(required = false) Long chatId) {
+                                       @RequestParam(required = false) Long id,
+                                       @Parameter(description = "ChatId пользователя")
+                                       @RequestParam(required = false) Long chatId) {
         if (id != null) {
             reportService.deleteReport(id);
         }

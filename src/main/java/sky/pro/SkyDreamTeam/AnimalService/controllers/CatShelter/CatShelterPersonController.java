@@ -87,10 +87,45 @@ public class CatShelterPersonController {
                                                              @PathVariable long chatId) {
         return ResponseEntity.ok(personService.findPersonByChatId(chatId));
     }
+    @Operation(summary = "Поиск всех пользователей",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Пользователь найден",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = CatShelterPerson.class)
+                    )
+            ), @ApiResponse(
+                    responseCode = "404",
+                    description = "Пользователь не найден в базе",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE)
+            )}
+    )
 
     @GetMapping(path = "getAllCatShelterPerson")
     public Collection<CatShelterPerson> getAllCatShelterPerson() {
         return ResponseEntity.ok(personService.getAllCatShelterPerson()).getBody();
+    }
+
+    @Operation(summary = "Удаление пользователя по ChatId",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Пользователь найден",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = CatShelterPerson.class)
+                    )
+            ), @ApiResponse(
+                    responseCode = "404",
+                    description = "Пользователь не найден в базе",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE)
+            )}
+    )
+    @DeleteMapping
+    public void deleteByChatId(@PathVariable Long chatId) {
+        personService.deleteByChatId(chatId);
     }
 
 

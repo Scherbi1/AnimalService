@@ -6,4 +6,5 @@ import sky.pro.SkyDreamTeam.AnimalService.model.Image;
 public interface ImageRepository extends JpaRepository<Image,Long> {
     Image findByDescription(String discription);
 
+    Image deleteByDescription(String description);
 }

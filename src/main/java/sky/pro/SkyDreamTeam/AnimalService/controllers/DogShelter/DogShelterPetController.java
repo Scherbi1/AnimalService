@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPerson;
 import sky.pro.SkyDreamTeam.AnimalService.model.CatShelter.CatShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.model.DogShelter.DogShelterPet;
 import sky.pro.SkyDreamTeam.AnimalService.service.DogShelter.DogShelterPetService;
@@ -61,7 +62,17 @@ public class DogShelterPetController {
         DogShelterPet pet = petService.findPetByName(name);
         return ResponseEntity.ok(pet);
     }
-
+    @Operation(
+            summary = "Выдать записи о всех животных",
+            responses = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Запись о пользователе отредактирована",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = CatShelterPerson.class)
+                    )
+            )}
+    )
     @GetMapping("getAllDogPets")
     public Collection<DogShelterPet> getAllDogPets() {
         return ResponseEntity.ok(petService.findAllDogPets()).getBody();
